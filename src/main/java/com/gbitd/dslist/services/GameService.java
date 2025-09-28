@@ -14,8 +14,12 @@ import java.util.List;
 @Service
 public class GameService {
 
-    @Autowired
-    private GameRepository gameRepository;
+// O Spring injeta automaticamente (não precisa de @Autowired em construtores únicos)
+    private final GameRepository gameRepository;
+
+    public GameService(GameRepository gameRepository){
+        this.gameRepository = gameRepository;
+    }
 
     @Transactional(readOnly = true)
     public GameDTO findById(Long id){
